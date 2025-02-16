@@ -1,6 +1,5 @@
 # fdrop
 An easy to set up cli tool to share files
----
 # how to set up
 ## client
 First we'll take you through the process of downloading and setting up the CLI tool

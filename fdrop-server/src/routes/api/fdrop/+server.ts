@@ -15,11 +15,11 @@ async function cleanupExpiredFiles() {
 
 	for (const file of files) {
 		if (file.endsWith('.meta')) {
-			const metaPath = path.join(uploadDir, file);
+			const metaPath = path.resolve(uploadDir, file)
 			const metadata = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
 
 			if (metadata.expiry < now) {
-				const filePath = path.join(uploadDir, metadata.filename);
+				const filePath = path.resolve(uploadDir, metadata.filename)
 
 				try {
 					await unlink(filePath);

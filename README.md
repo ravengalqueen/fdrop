@@ -15,10 +15,11 @@ Now, I used sveltekit to manage routing and other stuff, so these steps will foc
 if you want to help and add specific steps or modify the code to allow more framework compatibility, go ahead
 Assumptions:
 you have a server and access to its command line (e.g through ssh)
-you have git, nodejs v20+, and npm installed on it
+you have git, nodejs, and npm installed on it
 1. run `git clone https://github.com/ravengalqueen/fdrop.git`
 2. move into the fdrop-server directory
 3. run `npm install`
 4. run `npm run build`
-5. set up your preferred webserver software (e.g caddy, nginx, apache)
-6. You're all done! You now have an easy way of sharing files
+5. start node (e.g running `node .` on the build directory)
+6. set up your preferred webserver software (e.g caddy, nginx, apache)
+7. You're all done! You now have an easy way of sharing files

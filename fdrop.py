@@ -80,11 +80,14 @@ def send_post_request(args, url, config):
 
 
 def main():
+    default_lifetime = config["Settings"]["default_lifetime"]
+    allow_custom_lifetime = config["Settings"]["allow_custom_lifetime"]
+    url = config["Settings"]["url"]
     config = load_config()
     parser = argparse.ArgumentParser(description="A file sharing cli written in Python.")
     parser.add_argument('filename', nargs='?', help="The file to share (required unless using -d or -r)")
     parser.add_argument('-l', '--lifetime', type=int, default=1,
-                        help=f"The amount of time (in hours) the file should stay up, default: {config["Settings"]["default_lifetime"]} hour(s)")
+                        help=f"The amount of time (in hours) the file should stay up, default: {default_lifetime} hour(s)")
     parser.add_argument('-p', '--password', help="If added, a password will be required for download")
     parser.add_argument('-d', '--domain', help="This will add your domain to the config file automatically")
     parser.add_argument('-t', '--temporary',
@@ -104,15 +107,15 @@ def main():
         if ("Settings" not in config):
             print("Config file is invalid, recreating it...")
             create_config()
-        config["Settings"]["url"] = args.domain
+        url = args.domain
         save_config(config)
         print(f"Domain updated to {args.domain}")
         return
-    if(args.lifetime and config["Settings"]["allow_custom_lifetime"] != "true"):
+    if(args.lifetime and allow_custom_lifetime != "true"):
         parser.error("custom lifetimes are not allowed")
 
     if (args.filename):
-        url = args.temporary if args.temporary else config["Settings"]["url"]
+        url = args.temporary if args.temporary else url
         send_post_request(args, url, config)
 
 

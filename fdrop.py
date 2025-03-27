@@ -80,10 +80,10 @@ def send_post_request(args, url, config):
 
 
 def main():
+    config = load_config()
     default_lifetime = config["Settings"]["default_lifetime"]
     allow_custom_lifetime = config["Settings"]["allow_custom_lifetime"]
     url = config["Settings"]["url"]
-    config = load_config()
     parser = argparse.ArgumentParser(description="A file sharing cli written in Python.")
     parser.add_argument('filename', nargs='?', help="The file to share (required unless using -d or -r)")
     parser.add_argument('-l', '--lifetime', type=int, default=1,
